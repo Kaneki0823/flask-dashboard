@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
@@ -16,4 +17,5 @@ def dashboard():
     return render_template("index.html", students=data)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))  # Render will set PORT automatically
+    app.run(host="0.0.0.0", port=port, debug=False)
